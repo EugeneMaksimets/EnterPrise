@@ -1,0 +1,10 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="quizMapping" class="utility.QuizMappingImpl">
+    </bean>
+    <bean id="quizService" class="service.QuizServiceImpl">
+        <constructor-arg name="quizMapping" ref="quizMapping"/>
+    </bean>
+</beans>
