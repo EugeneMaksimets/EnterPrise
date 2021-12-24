@@ -47,7 +47,7 @@ public class QuizServiceImpl implements QuizService {
                 System.out.println(question);
                 answer = scanner.nextInt();
                 studentAnswers.add(answer);
-                rightAnswers.add(question.getRightNumber());
+                rightAnswers.add(question.getRightAnswer());
             }
             student.setPoint(checkAnswers(studentAnswers, rightAnswers));
             System.out.println(student);

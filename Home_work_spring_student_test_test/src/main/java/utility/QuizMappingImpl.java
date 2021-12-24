@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 public class QuizMappingImpl implements QuizMapping {
     private static final String[] MAPPING = new String[]{
             "number",
@@ -22,7 +23,7 @@ public class QuizMappingImpl implements QuizMapping {
             "answers[0]",
             "answers[1]",
             "answers[2]",
-            "rightNumber"
+            "rightAnswer"
     };
     private static final CellProcessor[] processors = new CellProcessor[]{
             new Optional(new ParseInt()),
@@ -38,7 +39,7 @@ public class QuizMappingImpl implements QuizMapping {
         ClassLoader classLoader = getClass().getClassLoader();
         File source = new File(Objects.requireNonNull(classLoader.getResource("question.csv")).getFile());
         try (ICsvDozerBeanReader reader = new CsvDozerBeanReader(new FileReader(source),
-                CsvPreference.TAB_PREFERENCE)) {
+                CsvPreference.EXCEL_NORTH_EUROPE_PREFERENCE)) {
             reader.getHeader(true);
             reader.configureBeanMapping(Quiz.class, MAPPING);
             Quiz question;

@@ -1,6 +1,6 @@
-number	question	answer1	answer2	answer3	rightAnswer
-1	What is the name of grandfather Morty?	Rick	Pig	Dik	1
-2	Best cartoon?	Simpsons	Rick and Morty	Adventure time	2
-3	What character is the program voicing?	Little robot	Morty Father	Morty from another universe	1
-4	How many references in the cartoon?	One	Ten	Infinity	3
-5	How many times did rick and morty die in season 4, episode 1?	One	Twenty nine	Forty five	2
+number;question;answer1;answer2;answer3;rightAnswer
+1;What is the name of grandfather Morty?;Rick;Pig;Dik;1
+2;Best cartoon?;Simpsons;Rick and Morty;Adventure time;2
+3;What character is the program voicing?;Little robot;Morty Father;Morty from another universe;1
+4;How many references in the cartoon?;One;Ten;Infinity;3
+5;How many times did rick and morty die in season 4, episode 1?;One;Twenty nine;Forty five;2
