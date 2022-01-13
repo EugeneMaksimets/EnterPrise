@@ -10,13 +10,20 @@ import org.supercsv.prefs.CsvPreference;
 
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
 public class QuizMappingImpl implements QuizMapping {
+    private static final CellProcessor[] PROCESSORS = new CellProcessor[]{
+            new ParseInt(),
+            new Optional(),
+            new Optional(),
+            new Optional(),
+            new Optional(),
+            new ParseInt()
+    };
     private static final String[] MAPPING = new String[]{
             "number",
             "question",
@@ -24,14 +31,6 @@ public class QuizMappingImpl implements QuizMapping {
             "answers[1]",
             "answers[2]",
             "rightAnswer"
-    };
-    private static final CellProcessor[] processors = new CellProcessor[]{
-            new Optional(new ParseInt()),
-            new Optional(),
-            new Optional(),
-            new Optional(),
-            new Optional(),
-            new ParseInt()
     };
 
     public List<Quiz> questionReader() {
@@ -43,11 +42,11 @@ public class QuizMappingImpl implements QuizMapping {
             reader.getHeader(true);
             reader.configureBeanMapping(Quiz.class, MAPPING);
             Quiz question;
-            while ((question = reader.read(Quiz.class, processors)) != null) {
+            while ((question = reader.read(Quiz.class, PROCESSORS)) != null) {
                 questions.add(question);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Problem with source File");
         }
         return questions;
     }

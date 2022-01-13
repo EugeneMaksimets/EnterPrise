@@ -31,29 +31,26 @@ public class QuizServiceImpl implements QuizService {
     }
 
     public void answerLogic(Student student) {
-        try {
-            List<Quiz> questions = this.getQuestions();
-            List<Integer> rightAnswers = new ArrayList<>();
-            List<Integer> studentAnswers = new ArrayList<>();
-            int answer;
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter your name:");
-            String result = scanner.nextLine();
-            student.setName(result);
-            System.out.println("Enter your surname:");
-            result = scanner.nextLine();
-            student.setSurname(result);
-            for (Quiz question : questions) {
-                System.out.println(question);
-                answer = scanner.nextInt();
-                studentAnswers.add(answer);
-                rightAnswers.add(question.getRightAnswer());
-            }
+
+        List<Quiz> questions = this.getQuestions();
+        List<Integer> rightAnswers = new ArrayList<>();
+        List<Integer> studentAnswers = new ArrayList<>();
+        int answer;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your name:");
+        String result = scanner.nextLine();
+        student.setName(result);
+        System.out.println("Enter your surname:");
+        result = scanner.nextLine();
+        student.setSurname(result);
+        for (Quiz question : questions) {
+            System.out.println(question);
+            answer = scanner.nextInt();
+            studentAnswers.add(answer);
+            rightAnswers.add(question.getRightAnswer());
             student.setPoint(checkAnswers(studentAnswers, rightAnswers));
-            System.out.println(student);
-        } catch (Exception e) {
-            System.err.println("Problem with source file");
         }
+        System.out.println(student);
     }
 
 }

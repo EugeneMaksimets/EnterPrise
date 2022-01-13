@@ -15,7 +15,7 @@ public class Quiz {
 
     public String toString() {
         return "Question №" + number + ":\n" + question + "\n"
-                + "Answer options:\n" + "1. " + answers.get(0) + "\n"
+                + "Answer:\n" + "1. " + answers.get(0) + "\n"
                 + "2. " + answers.get(1) + "\n"
                 + "3. " + answers.get(2) + "\n"
                 + "Enter number:";
