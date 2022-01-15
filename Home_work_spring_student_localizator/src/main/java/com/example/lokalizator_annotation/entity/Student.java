@@ -1,4 +1,4 @@
-package entity;
+package com.example.lokalizator_annotation.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,5 +9,4 @@ public class Student {
     private String name;
     private String surname;
     private int point;
-
 }

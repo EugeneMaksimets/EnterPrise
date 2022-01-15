@@ -1,15 +1,18 @@
-package service;
+package com.example.lokalizator_annotation.service;
 
-import entity.Quiz;
-import entity.Student;
-import org.springframework.stereotype.Service;
+import com.example.lokalizator_annotation.entity.Quiz;
+import com.example.lokalizator_annotation.entity.Student;
+import com.example.lokalizator_annotation.utility.QuizMapping;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import utility.QuizMapping;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
+
 
 @Service
 public class QuizServiceImpl implements QuizService {
@@ -17,21 +20,20 @@ public class QuizServiceImpl implements QuizService {
     private QuizMapping quizMapping;
     private MessageSource messageSource;
 
+    @Autowired
     public QuizServiceImpl(QuizMapping quizMapping, MessageSource messageSource) {
         this.quizMapping = quizMapping;
         this.messageSource = messageSource;
-
     }
 
-
     private static int checkAnswers(List<Integer> studentsAnswers, List<Integer> rightAnswers) {
-        int point = 0;
+        int result = 0;
         for (int i = 0; i < studentsAnswers.size(); i++) {
             if (rightAnswers.get(i).equals(studentsAnswers.get(i))) {
-                point++;
+                result++;
             }
         }
-        return point;
+        return result;
     }
 
     private void printQuestion(Quiz quiz) {
@@ -57,11 +59,13 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public void answerLogic(Student student) throws Exception {
+    @Bean
+    public void answerLogic() throws Exception {
 
         List<Quiz> questions = this.getQuestions();
         List<Integer> rightAnswers = new ArrayList<>();
         List<Integer> studentsAnswers = new ArrayList<>();
+        Student student = new Student();
         int answer;
         Scanner scanner = new Scanner(System.in);
         System.out.println(messageSource.getMessage("enter.name", null, Locale.getDefault()));
@@ -74,10 +78,12 @@ public class QuizServiceImpl implements QuizService {
             printQuestion(question);
             answer = scanner.nextInt();
             studentsAnswers.add(answer);
-            rightAnswers.add(question.getRightAnswer());
+            rightAnswers.add(question.getRightNumber());
         }
         student.setPoint(checkAnswers(studentsAnswers, rightAnswers));
         printResult(student);
 
     }
+
+
 }
