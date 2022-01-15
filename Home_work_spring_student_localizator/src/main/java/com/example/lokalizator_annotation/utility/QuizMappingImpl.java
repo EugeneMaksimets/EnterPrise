@@ -1,6 +1,7 @@
-package utility;
+package com.example.lokalizator_annotation.utility;
 
-import entity.Quiz;
+import com.example.lokalizator_annotation.entity.Quiz;
+import org.springframework.stereotype.Component;
 import org.supercsv.cellprocessor.Optional;
 import org.supercsv.cellprocessor.ParseInt;
 import org.supercsv.cellprocessor.ift.CellProcessor;
@@ -15,8 +16,16 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-
+@Component
 public class QuizMappingImpl implements QuizMapping {
+    private static final String[] MAPPING = new String[]{
+            "number",
+            "question",
+            "answers[0]",
+            "answers[1]",
+            "answers[2]",
+            "rightNumber"
+    };
     private static final CellProcessor[] PROCESSORS = new CellProcessor[]{
             new ParseInt(),
             new Optional(),
@@ -25,15 +34,8 @@ public class QuizMappingImpl implements QuizMapping {
             new Optional(),
             new ParseInt()
     };
-    private static final String[] MAPPING = new String[]{
-            "number",
-            "question",
-            "answers[0]",
-            "answers[1]",
-            "answers[2]",
-            "rightAnswer"
-    };
 
+    @Override
     public List<Quiz> questionReader() throws Exception {
         List<Quiz> questions = new ArrayList<>();
         Locale locale = Locale.getDefault();

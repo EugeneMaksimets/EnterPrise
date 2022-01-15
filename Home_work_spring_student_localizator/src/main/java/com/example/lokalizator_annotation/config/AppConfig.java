@@ -1,5 +1,4 @@
-/*
-package config;
+package com.example.lokalizator_annotation.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -7,15 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @Configuration
-public
-class LanguageConfig {
+public class AppConfig {
     @Bean
     public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("/bundle");
-        messageSource.setDefaultEncoding("UTF-8");
-        return messageSource;
+        ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
+        ms.setBasename("/bundle");
+        ms.setDefaultEncoding("UTF-8");
+        return ms;
     }
 
 }
-*/
